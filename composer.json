@@ -1,0 +1,10 @@
+{
+    "name": "lotus/app_carrinho_de_compra",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {}
+}
