@@ -3,20 +3,43 @@
 require __DIR__ ."/Vendor/autoload.php";
 
 use App\CarrinhoCompra;
+use App\Item;
+use App\Pedido;
+use App\EmailService;
 
-$carrinho = new CarrinhoCompra(); // Criando objeto do tipo carrinho de compras
+$pedido = new Pedido();
+//----------
+$item1 = new Item();
+$item2 = new Item();
 
-$carrinho->adicionarItem('bala', 10.0);
-$carrinho->adicionarItem('geladeira', 1000.39);
+$item1->setDescricao("porta Copos");
+$item1->setValor(10);
 
-echo "status: ".$carrinho->exibirStatus();
-echo "<br/>";
-print_r($carrinho->exibirItens()); // Deve imprimir um array com os itens adicionados
-echo "<br/>";
-print_r($carrinho->exibirValorTotal());  // Deve imprimir 30.0
-echo "<br/>";
+$item2 -> setDescricao("");
+$item2 -> setValor(20);
+//----------
+$pedido->getCarrinhoCompra()->adicionarItem($item1);
 
-if($carrinho->confirmarPedido()){
-    echo "pedido realizado com sucesso";
+
+$pedido->getCarrinhoCompra()->adicionarItem($item2);
+
+//---------
+echo "<h4>Pedido</h4>";
+echo "<pre>";
+print_r($pedido);
+echo "</pre>";
+//------------
+
+echo "<h4>Itens do Carrinho</h4>";
+
+echo "<pre>";
+print_r($pedido->getCarrinhoCompra()->getItens());
+echo "</pre>";
+//--------
+echo "<h4>Valor do Pedido</h4>";
+
+$total = 0;
+foreach($pedido->getCarrinhoCompra()->getItens() as $key){
+    $total += $key->getValor();
 }
-echo "status: ".$carrinho->exibirStatus();
+echo "<h4>Valor Total: R$ $total</h4>";
