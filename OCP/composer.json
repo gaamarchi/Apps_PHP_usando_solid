@@ -1,0 +1,10 @@
+{
+    "name": "lotus/ocp",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "SRC\\": "src/"
+        }
+    },
+    "require": {}
+}
